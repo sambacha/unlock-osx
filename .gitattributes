@@ -1,0 +1,3 @@
+*.xml text eol=lf
+*.plist text eolf=lf
+*.sh text eolf=lf
