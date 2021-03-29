@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+# Configure the authorization db to enable the plugin.
+./configureplugin.sh enable
+
+
+exit 0
