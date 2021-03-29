@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>Configures Setup Assistant settings</string>
+			<key>PayloadDisplayName</key>
+			<string>Setup Assistant</string>
+			<key>PayloadIdentifier</key>
+			<string>com.company.4886D259-E9F8-44C1-8148-862882A2491E.com.apple.SetupAssistant.managed.4ADB274C-7725-42C8-BB60-3192158FC9CA</string>
+			<key>PayloadOrganization</key>
+			<string></string>
+			<key>PayloadType</key>
+			<string>com.apple.SetupAssistant.managed</string>
+			<key>PayloadUUID</key>
+			<string>4ADB274C-7725-42C8-BB60-3192158FC9CA</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>SkipTouchIDSetup</key>
+			<true/>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Skips the Touch ID Setup pop-up window</string>
+	<key>PayloadDisplayName</key>
+	<string>Skip Touch ID Setup</string>
+	<key>PayloadIdentifier</key>
+	<string>com.company.4886D259-E9F8-44C1-8148-862882A2491E</string>
+	<key>PayloadOrganization</key>
+	<string>Company Name</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>4886D259-E9F8-44C1-8148-862882A2491E</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

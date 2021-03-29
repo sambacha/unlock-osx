@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>FXRemoveOldTrashItems</key>
+			<true/>
+			<key>PayloadDescription</key>
+			<string>Configures Finder settings</string>
+			<key>PayloadDisplayName</key>
+			<string>Finder</string>
+			<key>PayloadIdentifier</key>
+			<string>com.company.4860A2F2-D5B8-47C2-9E99-F537365178F1.com.apple.finder.DFC48126-E148-4D01-8D23-27AB19BC4458</string>
+			<key>PayloadOrganization</key>
+			<string></string>
+			<key>PayloadType</key>
+			<string>com.apple.finder</string>
+			<key>PayloadUUID</key>
+			<string>DFC48126-E148-4D01-8D23-27AB19BC4458</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Automatically removes items from the trash after the items have been in the trash for more than 30 days</string>
+	<key>PayloadDisplayName</key>
+	<string>Remove Trash After 30 Days</string>
+	<key>PayloadIdentifier</key>
+	<string>com.company.4860A2F2-D5B8-47C2-9E99-F537365178F1</string>
+	<key>PayloadOrganization</key>
+	<string>Company Name</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>4860A2F2-D5B8-47C2-9E99-F537365178F1</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
