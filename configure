@@ -1,0 +1,91 @@
+#!/bin/sh
+# shellcheck disable=SC2034
+# shellcheck disable=SC2016
+# shellcheck source=/dev/null
+
+# install XCode v12.2 && XCode v12.2 Command Line Tools first
+select-xcode 
+
+# After XCode is installed, we then must disable SIP mode
+# Reboot your computer and hold `COMMAND` + `R` to boot into System Recovery Mode
+# Open Terminal then type - NOTE: Terminal can be found in the top right hand bar when you reboot into recovery.
+csrutil disable
+reboot
+# Log back in then you MUST MOUNT the disk
+# This mounts the root disk, you wont be able to utilize csrutil disabled fully without mounting the disk!
+sudo mount -uw /
+
+
+cat <<EOF > ~/.gitconfig
+[url "https://github"]
+        insteadOf = git://github
+[url "https://github.com/"]
+        insteadOf = git@github.com:
+[url "https://"]
+        insteadOf = git://
+EOF
+
+#/** install bashV5.1 */
+csrutil status
+#@> disabled
+sudo mount -uw /
+csrutil status 
+# must reeturn a status of `disabled` for this to work properly
+wget https://ftp.gnu.org/gnu/bash/bash-5.1.tar.gz
+tar -xf bash-5.1.tar.gz
+cd bash-5.1 || exit
+./configure
+make
+sudo make install
+/usr/local/bin/bash --version
+sudo rm -rf /bin/bash
+sudo mv /usr/local/bin/bash /bin/bash
+/bin/bash --version
+echo "$SHELL"
+
+
+
+#/** create the directory for nix */
+
+sudo mkdir -p /nix
+#/** loging into root */
+
+sudo su
+
+#/** recursive ownership of /nix  */
+chown -R  "$USER" /nix
+ls -al /nix
+#> exit
+echo "$USER"
+#$(whoami)
+
+#/** next we copy over /etc/.bashrc completions into our ~/ */
+cat <<EOF > ~/.bashrc
+export PATH="$PATH:/usr/local/bin/"
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+EOF
+#/** load the configuration */
+. ~/.bashrc
+nix --version
+
+reboot
+
+#/** finalize permissions  */
+sudo chown -R "$(whoami)" /nix
+sudo chown -R "$(whoami)" /usr/local
+ls -a /usr/local/sbin
+#.       ..      .keepme
+cd /usr/local || exit
+sudo chown -R "$(whoami)" "$(brew --prefix)/*"
+sudo launchctl setenv NIX_SSL_CERT_FILE /etc/ssl/my-certificate-bundle.crt
+sudo launchctl kickstart -k system/org.nixos.nix-daemon
+cat <<EOF > ~/.bash_profile
+export PATH="$PATH:/usr/local/bin/"
+export PATH=$PATH:/usr/local/sbin
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+EOF
+#eol
