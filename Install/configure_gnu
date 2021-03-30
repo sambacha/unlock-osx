@@ -1,0 +1,1 @@
+CONFIG_SHELL=/bin/bash ./configure CONFIG_SHELL=/bin/bash && make && sudo make install
