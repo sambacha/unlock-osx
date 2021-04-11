@@ -18,7 +18,7 @@ IFS=$OLDIFS
 # "System Integrity Protection Not Available For" followed by the version of OS X.
 
 if [[ ( ${osvers_major} -eq 10 && ${osvers_minor} -lt 11 ) ]]; then
-  /bin/echo "System Integrity Protection Not Available For `sw_vers -productVersion`"
+  /bin/echo "System Integrity Protection Not Available For $(sw_vers -productVersion)"
 fi
 
 if [[ ( ${osvers_major} -eq 10 && ${osvers_minor} -ge 11 ) || ${osvers_major} -eq 11 ]]; then
@@ -26,43 +26,43 @@ if [[ ( ${osvers_major} -eq 10 && ${osvers_minor} -ge 11 ) || ${osvers_major} -e
 # Checks System Integrity Protection status on Macs
 # running 10.11.x or higher
 
-  SIP_status=`/usr/bin/csrutil status | awk '/status/ {print $5}' | sed 's/\.$//'`
+  SIP_status=$(/usr/bin/csrutil status | awk '/status/ {print $5}' | sed 's/\.$//')
 
-  if [ $SIP_status = "disabled" ]; then
+  if [ "$SIP_status" = "disabled" ]; then
       result=Disabled
-  elif [ $SIP_status = "enabled" ]; then
+  elif [ "$SIP_status" = "enabled" ]; then
          SIP_status="Active"
        
        # If SIP is enabled, run 'csrutil status' a second time
        # and export the output to a text file with a randomly
        # generated name.
        
-       sip_output="/tmp/`/usr/bin/uuidgen`.txt"
+       sip_output="/tmp/$(/usr/bin/uuidgen).txt"
       /usr/bin/csrutil status > "$sip_output"
       
       # Check the exported text file to see any custom SIP configuration
       # options have been enabled. If any custom SIP configurations are
       # active, display the configuration status.
       
-      sip_kernel_extension_allowed=`cat "$sip_output" | grep -io "Kext Signing: disabled"`
+      sip_kernel_extension_allowed=$(cat "$sip_output" | grep -io "Kext Signing: disabled")
         if [[ ${sip_kernel_extension_allowed} != "" ]]; then
-            sip_kernel=`/usr/bin/printf "\n$sip_kernel_extension_allowed"`
+            sip_kernel=$(/usr/bin/printf "\n$sip_kernel_extension_allowed")
         fi
-      sip_filesystem_allowed=`cat "$sip_output" | grep -io "Filesystem Protections: disabled"`
+      sip_filesystem_allowed=$(cat "$sip_output" | grep -io "Filesystem Protections: disabled")
         if [[ ${sip_filesystem_allowed} != "" ]]; then
-            sip_filesystem=`/usr/bin/printf "\n$sip_filesystem_allowed"`
+            sip_filesystem=$(/usr/bin/printf "\n$sip_filesystem_allowed")
         fi
-      sip_nvram_allowed=`cat "$sip_output" | grep -io "NVRAM Protections: disabled"`
+      sip_nvram_allowed=$(cat "$sip_output" | grep -io "NVRAM Protections: disabled")
         if [[ ${sip_nvram_allowed} != "" ]]; then
-            sip_nvram=`/usr/bin/printf "\n$sip_nvram_allowed"`
+            sip_nvram=$(/usr/bin/printf "\n$sip_nvram_allowed")
         fi
-      sip_debug_allowed=`cat "$sip_output" | grep -io "Debugging Restrictions: disabled"`
+      sip_debug_allowed=$(cat "$sip_output" | grep -io "Debugging Restrictions: disabled")
         if [[ ${sip_debug_allowed} != "" ]]; then
-            sip_debug=`/usr/bin/printf "\n$sip_debug_allowed"`
+            sip_debug=$(/usr/bin/printf "\n$sip_debug_allowed")
         fi
-      sip_dtrace_allowed=`cat "$sip_output" | grep -io "DTrace Restrictions: disabled"`
+      sip_dtrace_allowed=$(cat "$sip_output" | grep -io "DTrace Restrictions: disabled")
         if [[ ${sip_dtrace_allowed} != "" ]]; then
-            sip_dtrace=`/usr/bin/printf "\n$sip_dtrace_allowed"`
+            sip_dtrace=$(/usr/bin/printf "\n$sip_dtrace_allowed")
         fi
         if [[ -e "$sip_output" ]]; then
             /bin/rm "$sip_output"
