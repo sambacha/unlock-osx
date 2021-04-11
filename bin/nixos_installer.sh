@@ -60,3 +60,7 @@ export PATH="$PATH:/usr/local/bin/"
 export PATH=$PATH:/usr/local/sbin
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 EOF
+
+sudo chown -R $(whoami) /bin/wait4path
+sudo chmod +x /nix/var/nix/profiles/default/bin/nix-daemon
+sudo chown -R $(whoami) /nix/var/nix/profiles/default/bin/nix-daemon
