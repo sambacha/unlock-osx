@@ -26,11 +26,11 @@ BREW_HOME=$(brew --prefix)
 
 # for cython
 echo "installing gnu core utils and gcc"
-brew install core-utils
+brew install coreutils
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 brew install gcc
 brew update
-
+bas
 # for libc6-dev header files
 brew install openssl
 
