@@ -17,7 +17,7 @@
 # libjsonrpccpp-client.0.dylib
 #     -> /usr/local/opt/jsoncpp/lib/libjsoncpp.0.dylib
 #
-# See https://blogs.oracle.com/dipol/entry/dynamic_libraries_rpath_and_mac
+# See hhttps://web.archive.org/web/20130623025151/https://blogs.oracle.com/dipol/entry/dynamic_libraries_rpath_and_mac
 # for a little overview of "install_name_tool" and "otool".
 #
 # ------------------------------------------------------------------------------
