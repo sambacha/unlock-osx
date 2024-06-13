@@ -1,5 +1,8 @@
 
 
+https://mirror.ctan.org/systems/mac/mactex/MacTeX.pkg
+
+
 = OSX
 
 
